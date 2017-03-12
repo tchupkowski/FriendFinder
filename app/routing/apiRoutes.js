@@ -36,8 +36,50 @@ module.exports = function(app) {
     // Note the code here. Our "server" will respond to requests and let users know if they have a table or not.
     // It will do this by sending out the value "true" have a table
     //if (tableData.length < 5) {
-      friends.push(req.body);
-      res.json(true);
+     // friends.push(req.body);
+
+      var newFriend = req.body;
+      var differenceArray = [];
+
+      for(var i = 0; i <newFriend.scores.length; i++){
+        newFriend.scores[i] = parseInt(newFriend.scores[i]);        
+      }
+
+      //console.log(newFriend.scores)
+
+      for (var j=0; j<friends.length; j++){
+
+        var totalDifference = 0;
+        var compare = friends[j];
+        //console.log(compare);
+
+          for (var k=0; k<compare.scores.length; k++){
+
+              var difference = Math.abs(compare.scores[k] - newFriend.scores[k]);
+             // console.log(difference)
+              totalDifference += difference; 
+          }
+        
+        differenceArray[j] = totalDifference;
+
+      }
+
+      var bestFriendNumbDiff = differenceArray[0];
+      var bestFriendIndex =0;
+      console.log(differenceArray);
+
+      for (var l=0; l < (differenceArray.length); l++){
+
+        if (differenceArray[l] < bestFriendNumbDiff){
+          bestFriendNumbDiff = differenceArray[l];
+          bestFriendIndex = l; 
+          console.log(bestFriendNumbDiff);
+        }
+      }
+
+     //console.log (friends[bestFriendIndex]); 
+     friends.push(req.body); 
+     res.json(friends[bestFriendIndex]);
     // }
     // else {
     //   waitListData.push(req.body);

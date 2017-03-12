@@ -5,11 +5,24 @@
 // But you could have it be an empty array as well.
 // ===============================================================================
 
-var friendArray = [
+var friends = [
   {
-    
+   "name": "person1",
+	"photo": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTxsoPaLi8lDVMrP4uSNNotU3F_AoCIYXeSEBHdgF-6EcZRtqsFjg",
+	"scores": [
+	"1",
+	"1",
+	"1",
+	"1",
+	"1",
+	"1",
+	"1",
+	"1",
+	"1",
+	"1"
+	] 
   }
 ];
 
 // Note how we export the array. This makes it accessible to other files using require.
-module.exports = friendArray;
+module.exports = friends;
